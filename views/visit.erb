@@ -1,0 +1,68 @@
+<h2>Записаться</h2>
+<p>На этой странице вы сможете записаться к нам в Barber Shop</p>
+
+
+<script type="text/javascript">
+
+$(function() {
+
+  // тут я могу написать любой javascript код, который исполнится
+  // после загрузки страницы
+
+  $('#color').simplecolorpicker();
+  $('#datetimepicker').datetimepicker();
+
+});
+
+</script>
+
+
+<form action="/visit" method="POST" role="form">
+
+  <div class="form-group">
+    <label>Ваше имя</label>
+    <input name="client[name]" type="text" class="form-control" placeholder="Ваше имя" value="<%= @c.name %>">
+  </div>
+
+  <div class="form-group">
+    <label>Ваш телефон</label>
+    <input name="client[phone]" type="text" class="form-control" placeholder="Ваш телефон" value="<%= @c.phone %>">
+  </div>
+
+  <div class="form-group">
+    <label>Когда вас ждать?</label>
+    <input id="datetimepicker" name="client[datestamp]" type="text" class="form-control" placeholder="Введите дату и время" value="<%= @c.datestamp %>">
+  </div>
+
+ <div class="form-group">
+    <label>Ваш парикмахер:</label>
+    <select name="client[barber]" class="form-control">
+    
+      <% @barbers.each do |item| %>
+        <option <%= @c.barber == item['name'] ? 'selected' : '' %>><%= item['name'] %></option>
+      <% end %>
+
+    </select>
+  </div>
+ 
+  <div class="form-group">
+    <label>Цвет окраски волос: </label>
+    <select id="color" name="client[color]">
+      <option value="#7bd148" <%= @c.color == '#7bd148' ? 'selected' : '' %>>Green</option>
+      <option value="#5484ed" <%= @c.color == '#5484ed' ? 'selected' : '' %>>Bold blue</option>
+      <option value="#a4bdfc" <%= @c.color == '#a4bdfc' ? 'selected' : '' %>>Blue</option>
+      <option value="#46d6db" <%= @c.color == '#46d6db' ? 'selected' : '' %>>Turquoise</option>
+      <option value="#7ae7bf" <%= @c.color == '#7ae7bf' ? 'selected' : '' %>>Light green</option>
+      <option value="#51b749" <%= @c.color == '#51b749' ? 'selected' : '' %>>Bold green</option>
+      <option value="#fbd75b" <%= @c.color == '#fbd75b' ? 'selected' : '' %>>Yellow</option>
+      <option value="#ffb878" <%= @c.color == '#ffb878' ? 'selected' : '' %>>Orange</option>
+      <option value="#ff887c" <%= @c.color == '#ff887c' ? 'selected' : '' %>>Red</option>
+      <option value="#dc2127" <%= @c.color == '#dc2127' ? 'selected' : '' %>>Bold red</option>
+      <option value="#dbadff" <%= @c.color == '#dbadff' ? 'selected' : '' %>>Purple</option>
+      <option value="#e1e1e1" <%= @c.color == '#e1e1e1' ? 'selected' : '' %>>Gray</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Записаться</button>
+
+</form>
